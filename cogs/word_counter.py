@@ -9,19 +9,18 @@ class WordCounter(commands.Cog):
         self.ignored_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of'}
 
     def clean_word(self, word):
-        # Remove any non-alphanumeric characters
         word = re.sub(r'[^a-zA-Z0-9]', '', word)
         return word.lower()
 
     def is_valid_word(self, word):
         # Check if the word should be stored
-        if not word or len(word) <= 2:  # Skip empty or very short words
+        if not word or len(word) <= 2:  #  empty or very short words
             return False
-        if word in self.ignored_words:  # Skip common words
+        if word in self.ignored_words:  #  common words
             return False
-        if any(word.startswith(prefix) for prefix in ['!', '/', '<@', 'http', 'https']):  # Skip commands, mentions, links
+        if any(word.startswith(prefix) for prefix in ['!', '/', '<@', 'http', 'https']):  #  commands, mentions, links
             return False
-        if word.isdigit():  # Skip pure numbers
+        if word.isdigit():  #  pure numbers
             return False
         return True
 

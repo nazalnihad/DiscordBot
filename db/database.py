@@ -8,7 +8,7 @@ def setup_database():
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Create user_words table
+    # user_words table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS user_words (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -18,7 +18,7 @@ def setup_database():
         )
     ''')
     
-    # Create user_role table
+    #  user_role table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS user_role (
             id INT AUTO_INCREMENT PRIMARY KEY,

@@ -31,7 +31,7 @@ class RoleSelect(discord.ui.Select):
                 await interaction.response.send_message("Error: Role not found!", ephemeral=True)
                 return
 
-            # Store in database
+            # Store in db
             conn = get_db_connection()
             cursor = conn.cursor()
             
@@ -45,7 +45,6 @@ class RoleSelect(discord.ui.Select):
             cursor.close()
             conn.close()
 
-            # Add role to user
             await interaction.user.add_roles(role)
             print(f"Assigned role to {interaction.user.name}")
             await interaction.response.send_message(
@@ -73,7 +72,6 @@ class Roles(commands.Cog):
     async def select_role(self, interaction: discord.Interaction):
         try:
             print("select_role command invoked.")
-            # Get assignable roles (excluding admin/mod roles)
             available_roles = [
                 role for role in interaction.guild.roles 
                 if role.name.lower() in ['developer', 'gamer', 'lurker']
