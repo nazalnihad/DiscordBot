@@ -1,5 +1,3 @@
-# Discord Word Tracker Bot
-
 A simple bot that tracks word usage and handles roles in your Discord server.
 
 ## Commands
