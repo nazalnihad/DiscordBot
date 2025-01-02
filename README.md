@@ -1,22 +1,62 @@
-# 🤖 Available Commands- `/word-status` - Shows the 10 most used words in the server- `/user-status @user` - Shows the 10 most used words by a specific user- `/select-role` - Choose your role from available options##  Setup Guide### Prerequisites1. Python 3.8 or higher2. MySQL database3. Discord Bot Token### Installation Steps1. Clone this repo2. Create a virtual environment:   ```bash   python -m venv venv   source venv/bin/activate  # On Windows use: venv\Scripts\activate   ```3. Install required packages:   ```bash   pip install -r requirements.txt   ```4. Create a `.env` file in the project root with:   ```   DISCORD_TOKEN=your_bot_token_here   WELCOME_CHANNEL_ID=your_channel_id   DB_HOST=localhost   DB_USER=your_database_user
-   DB_PASSWORD=your_database_password
-   DB_NAME=your_database_name
-   ```
-5. Set up your MySQL database using the provided schema
+# Discord Word Tracker Bot
 
-### Running the Bot
-1. Activate your virtual environment
-2. Run the bot:
-   ```bash
-   python bot.py
-   ```
-3. [Add the bot to your server](https://discord.com/oauth2/authorize?client_id=1324246172176617503)
+A simple bot that tracks word usage and handles roles in your Discord server.
 
-## 💡 Note
-This bot needs to be run locally on your computer. Make sure to keep it running to maintain functionality!
+## What it does
+- Tracks words used in your server
+- Shows stats about word usage
+- Lets users pick their own roles
+- Welcomes new members
 
-## 🤝 Need Help?
-If you encounter any issues:
-1. Check if your database is properly configured
-2. Verify your `.env` file settings
-3. Ensure all required roles exist in your server
+## Commands
+- `/word-status` - See the top 10 most used words in the server
+- `/user-status @user` - See someone's most used words
+- `/select-role` - Pick a role (Developer, Gamer, or Lurker)
+
+## Setup
+
+1. Install Python 3.8 or newer
+2. Install MySQL
+
+3. Set up the database:
+```sql
+CREATE DATABASE discord_bot;
+CREATE TABLE user_words (
+    discord_id BIGINT,
+    word VARCHAR(255)
+);
+CREATE TABLE user_role (
+    discord_id BIGINT,
+    role_id BIGINT
+);
+```
+
+4. Download the files and install requirements:
+```bash
+git clone <your-repo-url>
+cd DiscordBot
+pip install -r requirements.txt
+```
+
+5. Create a `.env` file with:
+```
+DISCORD_TOKEN=your_bot_token
+WELCOME_CHANNEL_ID=your_welcome_channel_id
+DB_HOST=localhost
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=discord_bot
+```
+
+6. Start the bot:
+```bash
+python bot.py
+```
+
+7. Add to your server:
+[Click here to add bot](https://discord.com/oauth2/authorize?client_id=1324246172176617503)
+
+## Need help?
+- Make sure MySQL is running
+- Check if your `.env` file is set up correctly
+- Create the roles: Developer, Gamer, and Lurker in your server
